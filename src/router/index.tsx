@@ -5,7 +5,9 @@ const About = lazy(() => import("@/views/About"));
 const User = lazy(() => import("@/views/User"));
 import {Navigate} from "react-router-dom";
 
-
+const withLoadingComponent = (comp: JSX.Element) => (
+    <React.Suspense fallback={<div>Loding...</div>}>{comp}</React.Suspense>
+)
 const routes = [
     {
         path: "/",
@@ -17,11 +19,11 @@ const routes = [
     },
     {
         path: "/about",
-        element: <React.Suspense fallback={<div>Loding...</div>}><About/></React.Suspense>
+        element: withLoadingComponent(<About/>)
     },
     {
         path: "/user",
-        element: <React.Suspense fallback={<div>Loding...</div>}><User/></React.Suspense>
+        element: withLoadingComponent(<User/>)
     },
 ]
 export default routes
