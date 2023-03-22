@@ -28,8 +28,8 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined/>),
-    getItem('Option 2', '2', <DesktopOutlined/>),
+    getItem('Option 1', '/page1', <PieChartOutlined/>),
+    getItem('Option 2', '/page2', <DesktopOutlined/>),
     getItem('User', 'sub1', <UserOutlined/>, [
         getItem('Tom', '3'),
         getItem('Bill', '4'),
@@ -44,12 +44,14 @@ const View: React.FC = () => {
     const {
         token: {colorBgContainer},
     } = theme.useToken();
-
+    const menuClick=(e:{key:string})=>{
+        console.log("fff",e.key)
+    }
     return (
         <Layout style={{minHeight: '100vh'}}>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div style={{height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)'}}/>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items}/>
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick}/>
             </Sider>
             <Layout className="site-layout">
                 <Header style={{paddingLeft:"16px", background: colorBgContainer}}>
